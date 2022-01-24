@@ -11,6 +11,13 @@ def strip_0 (__frequency):
         frequency_temp.append(temp)
     return frequency_temp
 
+def filter_repeat(sol):
+    filtered_sol = []
+    for word in sol:
+        if len(set(word)) == 5:
+            filtered_sol.append(word)
+    return filtered_sol
+
 def filter_out_func(sol, filter_word):
     filtered_sol = []
     for word in sol:
@@ -23,7 +30,7 @@ def find_words_within_first_freq(frequency_sans_num, filter_out = False, filter_
     words_within_first_freq = []
     
     if filter_out:
-        sol_to_analyze = filter_out_func(sol_all, filter_word)
+        sol_to_analyze = filter_repeat(filter_out_func(sol_all, filter_word))
     else:
         sol_to_analyze = sol_all
     
@@ -51,7 +58,7 @@ def score_word(word):
 
 def assign_freq_to_words(filter_out = False, filter_word = ""):
     if filter_out:
-        sol_to_analyze = filter_out_func(sol_all, filter_word)
+        sol_to_analyze = filter_repeat(filter_out_func(sol_all, filter_word))
     else:
         sol_to_analyze = sol_all
     
